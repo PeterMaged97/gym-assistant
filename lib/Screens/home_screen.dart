@@ -1,13 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/services.dart';
+import 'package:get_ripped/Components/expandable.dart';
+import 'package:get_ripped/Components/volume_input_field.dart';
 import 'package:get_ripped/constants.dart';
 
 class HomeScreen extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-    List<String> dummy = ['a','b'];
+    List<String> dummy = ['a', 'b'];
     return Material(
       child: Container(
         decoration: BoxDecoration(
@@ -33,7 +35,9 @@ class HomeScreen extends StatelessWidget {
                     fontSize: 30,
                   ),
                 ),
-                SizedBox(height: 10,),
+                SizedBox(
+                  height: 10,
+                ),
                 Text(
                   'GET FIT',
                   textAlign: TextAlign.center,
@@ -43,23 +47,69 @@ class HomeScreen extends StatelessWidget {
                     fontSize: 15,
                   ),
                 ),
-                SizedBox(height: 30,),
+                SizedBox(
+                  height: 30,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Icon(Icons.add, color: kPrimaryColor,),
-                    Icon(Icons.add, color: kPrimaryColor,),
-                    Icon(Icons.add, color: kPrimaryColor,),
+                    Icon(
+                      Icons.add,
+                      color: kPrimaryColor,
+                    ),
+                    Icon(
+                      Icons.add,
+                      color: kPrimaryColor,
+                    ),
+                    Icon(
+                      Icons.add,
+                      color: kPrimaryColor,
+                    ),
                   ],
                 ),
-                SizedBox(height: 30,),
+                SizedBox(
+                  height: 30,
+                ),
                 ListView.builder(
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
-                  itemCount: 2,
-                  itemBuilder:(context, index) {
-                    return Container(
-                      child: Text('${dummy[index]}'),
+                  itemCount: 3,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        child: Column(
+                          children: [
+                            Container(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  'DUMBBELL BENCH PRESS',
+                                  style: TextStyle(
+                                      fontSize: 25, color: Colors.white),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 15),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  VolumeInputField('Sets'),
+                                  Icon(Icons.close, color: kPrimaryColor),
+                                  VolumeInputField('Reps'),
+                                  Icon(Icons.close, color: kPrimaryColor),
+                                  VolumeInputField('Weight'),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: kTertiaryBackgroundColor),
+                      ),
                     );
                   },
                 ),
