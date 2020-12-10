@@ -7,6 +7,8 @@ void main() {
 }
 
 void loadData(){
+  //ToDo: Loop over all exercise names, load 'sets', 'reps', and 'weight' (put a default 0 if they don't exist) and initialize objects for them.
+  //ToDo: after loading all exercises, create days containing list of exercises and routines containing list of days.
 }
 
 class GetRipped extends StatelessWidget {
