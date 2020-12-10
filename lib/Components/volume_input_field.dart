@@ -4,9 +4,10 @@ import 'package:get_ripped/constants.dart';
 
 class VolumeInputField extends StatelessWidget {
 
-  VolumeInputField(this.hintText);
+  VolumeInputField(this.hintText, this.currentValue);
 
   final String hintText;
+  final int currentValue;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,7 @@ class VolumeInputField extends StatelessWidget {
             hintText: hintText,
             hintStyle:
             TextStyle(color: kPrimaryColor)),
+        controller: TextEditingController()..text = currentValue.toString(),
         style: TextStyle(color: Colors.white),
         textAlign: TextAlign.center,
         cursorColor: Colors.white,
