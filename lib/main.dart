@@ -6,6 +6,9 @@ void main() {
   runApp(GetRipped());
 }
 
+void loadData(){
+}
+
 class GetRipped extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
