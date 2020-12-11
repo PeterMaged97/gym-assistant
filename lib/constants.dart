@@ -16,7 +16,7 @@ final List<String> kExerciseNames = [
   'pulldown',
   'low row',
   'row (machine)',
-  'pulldown (machine)'
+  'pulldown (machine)',
   'lower back',
   'rear deltoids (machine)',
   'biceps curls',
@@ -31,7 +31,7 @@ final List<String> kExerciseNames = [
 ];
 
 final Map<String, List<int>> kDayNames = {
-  'Push': [0,1,2,3,4,5,6,20,21],
+  'Push': [0,1,2,3,4,5,6,20,21,],
   'Pull': [7,8,9,10,11,12,13,14],
   'Legs': [15,16,17,18,19],
   'Chest': [0,1,2,3],

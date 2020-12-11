@@ -5,6 +5,8 @@ import 'package:get_ripped/constants.dart';
 import 'package:get_ripped/day.dart';
 import 'package:get_ripped/exercise.dart';
 import 'package:get_ripped/routine.dart';
+import 'package:get_ripped/routine_list.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -27,8 +29,10 @@ Future<List<Routine>> loadData() async {
     exercises.add(Exercise(exerciseName.toUpperCase(), sets, reps, weight, isMetric));
   }
   kDayNames.forEach((key, value) {
+    print(key);
     List<Exercise> e = [];
     for (int i in value) {
+      print(exercises[i].name);
       e.add(exercises[i]);
     }
     days.add(Day(key, e));
@@ -47,13 +51,19 @@ Future<List<Routine>> loadData() async {
 class GetRipped extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
     SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(systemNavigationBarColor: Color(0x00000000)));
-    return MaterialApp(
-      initialRoute: '/',
-      routes: {
-        '/' : (context) => HomeScreen(),
+    return FutureProvider<RoutineList>(
+      create: (BuildContext context) async {
+        return RoutineList(await loadData());
       },
+      child: MaterialApp(
+        initialRoute: '/',
+        routes: {
+          '/' : (context) => HomeScreen(),
+        },
+      ),
     );
   }
 }
