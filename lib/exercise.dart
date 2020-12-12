@@ -8,9 +8,7 @@ class Exercise with ChangeNotifier{
   int weight;
   bool isMetric;
 
-  Exercise(name, this.sets, this.reps, this.weight, this.isMetric){
-    this.name = name.toUpperCase();
-  }
+  Exercise(this.name, this.sets, this.reps, this.weight, this.isMetric);
 
   void changeSets(int newValue){
     sets = newValue;

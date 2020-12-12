@@ -26,7 +26,7 @@ Future<List<Routine>> loadData() async {
     int weight = prefs.getInt('$exerciseName weight') ?? 0;
     bool isMetric  = prefs.getBool('$exerciseName isMetric') ?? true;
 
-    exercises.add(Exercise(exerciseName.toUpperCase(), sets, reps, weight, isMetric));
+    exercises.add(Exercise(exerciseName, sets, reps, weight, isMetric));
   }
   kDayNames.forEach((key, value) {
     print(key);

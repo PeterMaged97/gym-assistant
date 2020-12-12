@@ -4,15 +4,17 @@ import 'package:get_ripped/constants.dart';
 
 class VolumeInputField extends StatelessWidget {
 
-  VolumeInputField(this.hintText, this.currentValue);
+  VolumeInputField(this.hintText, this.currentValue, this.onChanged);
 
   final String hintText;
   final int currentValue;
+  final Function onChanged;
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: TextField(
+        onChanged: onChanged,
         decoration: InputDecoration(
             focusedBorder: UnderlineInputBorder(
               borderSide:
