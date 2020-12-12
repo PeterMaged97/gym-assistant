@@ -1,0 +1,62 @@
+import 'package:flutter/material.dart';
+import 'package:get_ripped/Components/drop_down_unit_selector.dart';
+import 'package:get_ripped/Components/volume_input_field.dart';
+import '../constants.dart';
+
+class ExerciseCard extends StatelessWidget {
+  final String label;
+  final int sets;
+  final int reps;
+  final int weight;
+  final bool isMetric;
+  ExerciseCard(this.label, this.sets, this.reps, this.weight, this.isMetric);
+
+  @override
+  Widget build(BuildContext context) {
+    int currentSets = sets;
+    int currentReps = reps;
+    int currentWeight = weight;
+    bool currentIsMetric = isMetric;
+    return Container(
+      child: Column(
+        children: [
+          Container(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                label.toUpperCase(),
+                style: TextStyle(fontSize: 25, color: Colors.white),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                VolumeInputField('Sets', sets, (value) {
+                  currentSets = value;
+                }),
+                Icon(Icons.close, color: kPrimaryColor),
+                VolumeInputField('Reps', reps, (value) {
+                  currentReps = value;
+                }),
+                Icon(Icons.close, color: kPrimaryColor),
+                VolumeInputField('Weight', weight, (value) {
+                  currentWeight = value;
+                }),
+                DropDownUnitSelector(currentIsMetric, label),
+                //ToDo: Add a 'Save' Button to persist values to shared preferences when tapped.
+                //ToDo: (Optional) Add a way for checking the exercise as 'done' (use a check icon or change card color).
+              ],
+            ),
+          )
+        ],
+      ),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: kTertiaryBackgroundColor),
+    );
+  }
+}
