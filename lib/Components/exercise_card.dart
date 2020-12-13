@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_ripped/Components/drop_down_unit_selector.dart';
 import 'package:get_ripped/Components/volume_input_field.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../constants.dart';
 
 class ExerciseCard extends StatelessWidget {
@@ -35,19 +36,39 @@ class ExerciseCard extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                VolumeInputField('Sets', sets, (value) {
-                  currentSets = value;
-                }),
+                VolumeInputField(
+                    hintText: 'Sets',
+                    currentValue: sets,
+                    onChangedCallback: (value) {
+                      currentSets = int.parse(value);
+                    },
+                    onEditingCompleteCallback: () async {
+                      SharedPreferences prefs = await SharedPreferences.getInstance();
+                      prefs.setInt('$label sets', currentSets);
+                    }),
                 Icon(Icons.close, color: kPrimaryColor),
-                VolumeInputField('Reps', reps, (value) {
-                  currentReps = value;
-                }),
+                VolumeInputField(
+                    hintText: 'Reps',
+                    currentValue: reps,
+                    onChangedCallback: (value) {
+                      currentReps = int.parse(value);
+                    },
+                    onEditingCompleteCallback: () async {
+                      SharedPreferences prefs = await SharedPreferences.getInstance();
+                      prefs.setInt('$label reps', currentReps);
+                    }),
                 Icon(Icons.close, color: kPrimaryColor),
-                VolumeInputField('Weight', weight, (value) {
-                  currentWeight = value;
-                }),
+                VolumeInputField(
+                    hintText: 'Weight',
+                    currentValue: weight,
+                    onChangedCallback: (value) {
+                      currentWeight = int.parse(value);
+                    },
+                    onEditingCompleteCallback: () async {
+                      SharedPreferences prefs = await SharedPreferences.getInstance();
+                      prefs.setInt('$label weight', currentWeight);
+                    }),
                 DropDownUnitSelector(currentIsMetric, label),
-                //ToDo: Add a 'Save' Button to persist values to shared preferences when tapped.
                 //ToDo: (Optional) Add a way for checking the exercise as 'done' (use a check icon or change card color).
               ],
             ),
