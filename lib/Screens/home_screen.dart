@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get_ripped/Components/exercise_card.dart';
+import 'package:get_ripped/Components/display_card.dart';
 import 'package:get_ripped/constants.dart';
 import 'package:get_ripped/routine_list.dart';
 import 'package:provider/provider.dart';
@@ -8,9 +8,7 @@ import 'package:provider/provider.dart';
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
-    dynamic source =
-        Provider.of<RoutineList>(context).routines[0].days[0].exercises;
+    dynamic source = Provider.of<RoutineList>(context).routines[0].days;
 
     return Material(
       child: Container(
@@ -73,6 +71,7 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(
                   height: 30,
                 ),
+                // ToDo: Find a way to make the ListView Builder return either a DisplayCard or an ExerciseCard based on the source.
                 source == null
                     ? Container(child: CupertinoActivityIndicator(radius: 50.0))
                     : Expanded(
@@ -84,12 +83,9 @@ class HomeScreen extends StatelessWidget {
                             return Padding(
                               padding:
                                   const EdgeInsets.symmetric(vertical: 8.0),
-                              child: ExerciseCard(
-                                  source[index].name,
-                                  source[index].sets,
-                                  source[index].reps,
-                                  source[index].weight,
-                                  source[index].isMetric),
+                              child: DisplayCard(source[index].name, () {
+                                // ToDo: Add Navigation Between different hierarchies.
+                              }),
                             );
                           },
                         ),
@@ -102,5 +98,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
-//ToDo: create another card template for Routines and Days.
