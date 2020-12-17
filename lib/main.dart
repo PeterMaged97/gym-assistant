@@ -54,7 +54,25 @@ class GetRipped extends StatelessWidget {
 
     SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(systemNavigationBarColor: Color(0x00000000)));
-    return FutureProvider<RoutineList>(
+    return FutureBuilder<List<Routine>>(
+      builder: (BuildContext context, AsyncSnapshot<List<Routine>> snapshot) {
+        if(!snapshot.hasData){
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        } else{
+          List<Routine> r = snapshot.data;
+          return MaterialApp(
+            initialRoute: '/',
+            routes: {
+              '/' : (context) => HomeScreen(r),
+            },
+          );
+        }
+      },
+      future: loadData(),
+    );
+    /*return FutureProvider<RoutineList>(
       create: (BuildContext context) async {
         return RoutineList(await loadData());
       },
@@ -64,6 +82,7 @@ class GetRipped extends StatelessWidget {
           '/' : (context) => HomeScreen(),
         },
       ),
-    );
+    );*/
+    //HomeScreen(routines);
   }
 }

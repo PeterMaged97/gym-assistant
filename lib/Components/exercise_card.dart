@@ -5,12 +5,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../constants.dart';
 
 class ExerciseCard extends StatelessWidget {
-  final String label;
+  final String name;
   final int sets;
   final int reps;
   final int weight;
   final bool isMetric;
-  ExerciseCard(this.label, this.sets, this.reps, this.weight, this.isMetric);
+  ExerciseCard(this.name, this.sets, this.reps, this.weight, this.isMetric);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class ExerciseCard extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                label.toUpperCase(),
+                name.toUpperCase(),
                 style: TextStyle(fontSize: 25, color: Colors.white),
                 textAlign: TextAlign.center,
               ),
@@ -44,7 +44,7 @@ class ExerciseCard extends StatelessWidget {
                     },
                     onEditingCompleteCallback: () async {
                       SharedPreferences prefs = await SharedPreferences.getInstance();
-                      prefs.setInt('$label sets', currentSets);
+                      prefs.setInt('$name sets', currentSets);
                     }),
                 Icon(Icons.close, color: kPrimaryColor),
                 VolumeInputField(
@@ -55,7 +55,7 @@ class ExerciseCard extends StatelessWidget {
                     },
                     onEditingCompleteCallback: () async {
                       SharedPreferences prefs = await SharedPreferences.getInstance();
-                      prefs.setInt('$label reps', currentReps);
+                      prefs.setInt('$name reps', currentReps);
                     }),
                 Icon(Icons.close, color: kPrimaryColor),
                 VolumeInputField(
@@ -66,9 +66,9 @@ class ExerciseCard extends StatelessWidget {
                     },
                     onEditingCompleteCallback: () async {
                       SharedPreferences prefs = await SharedPreferences.getInstance();
-                      prefs.setInt('$label weight', currentWeight);
+                      prefs.setInt('$name weight', currentWeight);
                     }),
-                DropDownUnitSelector(currentIsMetric, label),
+                DropDownUnitSelector(currentIsMetric, name),
                 //ToDo: (Optional) Add a way for checking the exercise as 'done' (use a check icon or change card color).
               ],
             ),
