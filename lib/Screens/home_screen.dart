@@ -1,11 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_ripped/Components/display_card.dart';
 import 'package:get_ripped/Components/exercise_card.dart';
 import 'package:get_ripped/constants.dart';
 import 'package:get_ripped/routine.dart';
-import 'package:get_ripped/routine_list.dart';
-import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
 
@@ -103,8 +102,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             source = widget.routines;
                           });
                         },
-                        child: Icon(
-                          Icons.add,
+                        child: FaIcon(
+                          FontAwesomeIcons.list,
                           color: currentLevel == kListLevel.Routine
                               ? Colors.white
                               : kPrimaryColor,
@@ -120,15 +119,15 @@ class _HomeScreenState extends State<HomeScreen> {
                             }
                           });
                         },
-                        child: Icon(
-                          Icons.add,
+                        child: FaIcon(
+                          FontAwesomeIcons.calendarDay,
                           color: currentLevel == kListLevel.Day
                               ? Colors.white
                               : kPrimaryColor,
                         ),
                       ),
-                      Icon(
-                        Icons.add,
+                      FaIcon(
+                        FontAwesomeIcons.dumbbell,
                         color: currentLevel == kListLevel.Exercise
                             ? Colors.white
                             : kPrimaryColor,
